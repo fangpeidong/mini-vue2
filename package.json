@@ -1,0 +1,29 @@
+{
+  "name": "vue2-source-code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "rollup -c -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fangpeidong/vue2-source-code.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fangpeidong/vue2-source-code/issues"
+  },
+  "homepage": "https://github.com/fangpeidong/vue2-source-code#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
+    "rollup": "^2.47.0",
+    "rollup-plugin-babel": "^4.4.0"
+  },
+  "dependencies": {
+    "rollup-plugin-node-resolve": "^5.2.0"
+  }
+}
