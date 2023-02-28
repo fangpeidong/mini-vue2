@@ -49,7 +49,7 @@ export function parserHTML(html) {
     html = html.substring(len);
   }
   function parseStartTag() {
-    const start = html.match(startTagOpen); // 4.30 继续
+    const start = html.match(startTagOpen);
     if (start) {
       const match = {
         tagName: start[1],

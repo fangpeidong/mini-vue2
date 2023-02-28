@@ -1,4 +1,5 @@
 import { createElementVNode, createTextVNode } from '../vdom';
+import Watcher from './observe/watcher';
 
 function patchProps(el, props) {
   for (let key in props) {
@@ -66,5 +67,10 @@ export function initLifeCycle(Vue) {
 
 export function mountComponent(vm, el) {
   vm.$el = el;
-  vm._update(vm._render());
+  const updateComponent = () => {
+    vm._update(vm._render());
+  };
+
+  const wacther = new Watcher(vm, updateComponent, true);
+  console.log(wacther);
 }

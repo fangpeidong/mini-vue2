@@ -1,5 +1,6 @@
 import { isObject, isArray } from '../utils';
 import { arrayMethods } from './array';
+import Dep from './dep';
 
 class Observe {
   constructor(value) {
@@ -26,8 +27,12 @@ class Observe {
 
 function defineReactive(obj, key, value) {
   observe(value);
+  const dep = new Dep();
   Object.defineProperty(obj, key, {
     get() {
+      if (Dep.target) {
+        dep.depend();
+      }
       return value;
     },
     set(newValue) {
@@ -36,6 +41,7 @@ function defineReactive(obj, key, value) {
       }
       observe(newValue);
       value = newValue;
+      dep.notify();
     }
   });
 }
