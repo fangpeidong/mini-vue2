@@ -1,4 +1,4 @@
-import { createElementVNode, createTextVNode } from '../vdom';
+import { createElementVNode, createTextVNode } from './vdom';
 import Watcher from './observe/watcher';
 
 function patchProps(el, props) {

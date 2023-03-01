@@ -19,13 +19,58 @@ class Watcher {
       dep.addSub(this);
     }
   }
+  run() {
+    this.get();
+  }
   get() {
     Dep.target = this;
     this.getter();
     Dep.target = null;
   }
   update() {
-    this.get();
+    queueWatcher(this);
+  }
+}
+
+let queue = [];
+let has = {};
+let pending = false;
+
+function flushSchedulerqueue() {
+  const flushqueue = [...queue];
+  queue = [];
+  has = {};
+  pending = false;
+  flushqueue.forEach((q) => q.run());
+}
+
+function queueWatcher(watcher) {
+  const id = watcher.id;
+  if (!has[id]) {
+    queue.push(watcher);
+    has[id] = true;
+    if (!pending) {
+      nextTick(flushSchedulerqueue);
+      pending = true;
+    }
+  }
+}
+
+let callbacks = [];
+let waiting = false;
+
+function flushCallbacks() {
+  let cbs = [...callbacks];
+  waiting = false;
+  callbacks = [];
+  cbs.forEach((cb) => cb());
+}
+
+export function nextTick(cb) {
+  callbacks.push(cb);
+  if (!waiting) {
+    Promise.resolve().then(flushCallbacks);
+    waiting = true;
   }
 }
 
