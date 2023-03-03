@@ -74,3 +74,11 @@ export function mountComponent(vm, el) {
   const wacther = new Watcher(vm, updateComponent, true);
   console.log(wacther);
 }
+
+export function callHook(vm, hook) {
+  // 调用钩子函数
+  const handlers = vm.$options[hook];
+  if (handlers) {
+    handlers.forEach((handler) => handler.call(vm));
+  }
+}

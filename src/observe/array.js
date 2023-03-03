@@ -1,9 +1,10 @@
 let oldArrayPrototype = Array.prototype;
 export let arrayMethods = Object.create(oldArrayPrototype);
 let methods = ['push', 'shift', 'pop', 'unshift', 'reverse', 'sort', 'splice'];
+
 methods.forEach((method) => {
   arrayMethods[method] = function (...args) {
-    oldArrayPrototype[method].call(this, ...args);
+    const result = oldArrayPrototype[method].call(this, ...args);
     let inserted = null;
     let ob = this.__ob__;
     switch (method) {
@@ -18,5 +19,8 @@ methods.forEach((method) => {
     if (inserted) {
       ob.observeArray(inserted);
     }
+    console.log(ob.dep);
+    ob.dep.notify();
+    return result;
   };
 });
