@@ -70,9 +70,7 @@ export function mountComponent(vm, el) {
   const updateComponent = () => {
     vm._update(vm._render());
   };
-
-  const wacther = new Watcher(vm, updateComponent, true);
-  console.log(wacther);
+  new Watcher(vm, updateComponent, true);
 }
 
 export function callHook(vm, hook) {
