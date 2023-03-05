@@ -8,8 +8,7 @@ export function initMixins(Vue) {
     const vm = this;
     vm.$options = options;
     vm.$options = mergeOptions(this.constructor.options, options);
-    callHook(vm, 'beforeCreate'); // 内部调用的是beforeCreate 写错了就不执行了
-    // 初始化状态, 初始化计算属性,watch
+    callHook(vm, 'beforeCreate');
     initState(vm);
     callHook(vm, 'created');
 

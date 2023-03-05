@@ -40,7 +40,7 @@ export function mergeOptions(parent, child) {
     if (strats[key]) {
       options[key] = strats[key](parent[key], child[key]);
     } else {
-      options[key] = child[key] || parent[key]; // 优先采用儿子，在采用父亲
+      options[key] = child[key] || parent[key];
     }
   }
   return options;
